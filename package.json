@@ -1,0 +1,18 @@
+{
+  "author": "Alexandre Ambourg",
+  "name": "AlexHouse",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">= 6.3.1"
+  },
+  "dependencies": {
+    "node-schedule": "^1.2.0",
+    "ovh": "^2.0.1",
+    "request": "^2.75.0",
+    }
+}
