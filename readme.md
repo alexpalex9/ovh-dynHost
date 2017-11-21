@@ -3,6 +3,13 @@
 this module is actually a simple wrapper of official OVH module in order to automatically set your dynamic hosting in OVH.
 it just needs to be initiated with a configuration json variable and will provide back events to handle.
 
+
+### version 2.0
+
+- cleaner code using waterfall
+- bug correction
+- reduction of event (only one event for any error)
+
 ### Prerequisites
 - have a domain name with OVH
 - set a inital record of dynHost in ovh manager []
@@ -16,7 +23,7 @@ var config={
 	"appSecret":"YYYYYYYYYYYYYYYY",
 	"consumerKey":"ZZZZZZZZZZZZZZZZz",
 	"zone":"mydomainname.fr",
-	"refreshFrequency":5 //refreshFrequency is in minutes
+	"minutesRequestFrequency":5 //refreshFrequency is in minutes
 	}
 	
 
@@ -24,28 +31,12 @@ var ovh = require('./dynHostOvh.js')(config);
 
 // event catch
 
-ovh.on('success',function(){
-	console.log('public ip changed in ovh with success')
+ovh.on('ovh IP udpated',function(ip){
+	console.log('public ip changed in ovh with success - newip = '+ ip)
 })
-myovh.on("fail to get current public IP",function(){
+myovh.on("error",function(message){
 	// do something
 });
-myovh.on("fail to get OVH ID",function(){
+myovh.on("no need to update IP",function(){
 	// do something
 });
-myovh.on("fail to get ovh IP",function(){
-	// do something
-});
-myovh.on("fail to update ovh ip",function(){
-	// do something
-});
-myovh.on("fail to refresh OVH zone",function(){
-	// do something
-});
-myovh.on("public ip updated",function(ip){
-	// do something
-});
-myovh.on("no need to update IP",function(ip){
-	// console.log("INFO","cloud","ip identique : " + ip);
-});
-```
