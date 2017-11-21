@@ -34,9 +34,9 @@ var ovh = require('./dynHostOvh.js')(config);
 ovh.on('ovh IP udpated',function(ip){
 	console.log('public ip changed in ovh with success - newip = '+ ip)
 })
-myovh.on("error",function(message){
+ovh.on("error",function(message){
 	// do something
 });
-myovh.on("no need to update IP",function(){
+ovh.on("no need to update IP",function(){
 	// do something
 });
